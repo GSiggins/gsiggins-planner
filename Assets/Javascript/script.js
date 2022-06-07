@@ -42,13 +42,12 @@ setInterval(timeclock, 1000)
 checkTime(timeArray, 150000)
 
 function storeText (event) {
-    console.log("storetext init")
-var target = $(event.target)
-if (target.is('saveBtn')) {
-    var userText = target.siblings('user-text').val().trim();
-    localStorage.setItem('savedText', JSON.stringify(userText));
+    var click = $(event.target);
+    console.log(click);
+    var userInput = click.siblings('.user-text').val();
+    console.log(userInput);
 }
-}
+
 
 
 
