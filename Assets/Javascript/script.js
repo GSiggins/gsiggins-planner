@@ -44,7 +44,6 @@ let timeclock = function () {
 function storeText(event) {
     var saveClick = event.target
     console.log(saveClick)
-    alert("Saved to localStorage!")
     var hourTodo = $(saveClick).siblings('.time-block').attr('id')
     var taskText = $(saveClick).siblings('textarea').val()
     console.log(taskText);
