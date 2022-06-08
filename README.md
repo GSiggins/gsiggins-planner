@@ -29,3 +29,5 @@
 -Commited values of text areas to local storage with the key being the hour.
 
 -Used getItem to populate the time-slots with the correlating info. 
+
+![image](https://user-images.githubusercontent.com/103160909/172531872-b117f012-255d-42dc-9e08-8d8686046568.png)
