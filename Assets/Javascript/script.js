@@ -10,9 +10,8 @@ var fivePM = document.getElementById('17')
 var timeArray = [nineAM, tenAM, elevenAM, twelvePM, onePM, twoPM, threePM, fourPM, fivePM]
 console.log(timeArray)
 
-
 function checkTime(timeArray) {
-    let currentHour = (moment().format('12'));
+    let currentHour = (moment().format('H'));
     console.log("the current hour is " + currentHour);
     for (let i = 0; i < timeArray.length; i++) {
         let hourCheck = parseInt(timeArray[i].dataset.num)
@@ -37,19 +36,45 @@ let timeclock = function () {
     document.querySelector('#currentDay').innerHTML = time;
 }
 
+
+function storeText(event) {
+    var saveClick = event.target
+    var hourTodo = $(saveClick).siblings('.time-block').attr('id')
+    var taskText = $(saveClick).siblings('.user-text').val()
+
+    localStorage.setItem(hourTodo, taskText)
+}
+
+
+function storageText() {
+    var hourNum = 9
+
+    while (hourNum <=17) {
+        var renderTask = localStorage.getItem(hourNum);
+        console.log(renderTask);
+        hourNum++;
+    }
+}
+
+// function storeText(event) {
+//     var button = $(event.target)
+//     console.log(button);
+//     var userText = $('.user-text').val();
+//     console.log(userText);
+//     var stagedStorage = $(event.target).siblings('.user-text').text();
+//     stagedStorage.text();
+//     var hourBlock = button.dataset.num;
+//     localStorage.setItem(hourBlock, userText)
+//     console.log(userText);
+// }
+// var hours = $(target).parent('.time-block').attr('id');
+//     console.log(hours);
+//         localStorage.setItem(hours, trimmedInput);
+    
+
+
 timeclock()
 setInterval(timeclock, 1000)
 checkTime(timeArray, 150000)
 
-function storeText (event) {
-    var click = $(event.target);
-    console.log(click);
-    var userInput = click.siblings('.user-text').val();
-    console.log(userInput);
-}
-
-
-
-
-
-$('.saveBtn').on('click', storeText)
+$('.saveBtn').on('click', storeText);
