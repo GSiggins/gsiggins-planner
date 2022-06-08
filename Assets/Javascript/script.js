@@ -10,6 +10,9 @@ var fivePM = document.getElementById('17')
 var timeArray = [nineAM, tenAM, elevenAM, twelvePM, onePM, twoPM, threePM, fourPM, fivePM]
 console.log(timeArray)
 
+
+//checks current time using moment.js against the time-slot 
+//to determine if its past/present/future
 function checkTime(timeArray) {
     let currentHour = (moment().format('H'));
     console.log("the current hour is " + currentHour);
@@ -31,50 +34,37 @@ function checkTime(timeArray) {
     }
 }
 
+// Displays "live" time in the jumbotron
 let timeclock = function () {
     var time = moment().format('[It is currently ] dddd, MMMM Do YYYY [ at ] hh:mm:ss a');
     document.querySelector('#currentDay').innerHTML = time;
 }
 
-
+// Stores the text-area content when the save button is pressed.
 function storeText(event) {
     var saveClick = event.target
+    console.log(saveClick)
     var hourTodo = $(saveClick).siblings('.time-block').attr('id')
-    var taskText = $(saveClick).siblings('.user-text').val()
-
-    localStorage.setItem(hourTodo, taskText)
+    var taskText = $(saveClick).siblings('textarea').val()
+    console.log(taskText);
+    localStorage.setItem(hourTodo, taskText);
+    return;
 }
 
-
-function storageText() {
-    var hourNum = 9
-
-    while (hourNum <=17) {
-        var renderTask = localStorage.getItem(hourNum);
-        console.log(renderTask);
-        hourNum++;
-    }
-}
-
-// function storeText(event) {
-//     var button = $(event.target)
-//     console.log(button);
-//     var userText = $('.user-text').val();
-//     console.log(userText);
-//     var stagedStorage = $(event.target).siblings('.user-text').text();
-//     stagedStorage.text();
-//     var hourBlock = button.dataset.num;
-//     localStorage.setItem(hourBlock, userText)
-//     console.log(userText);
-// }
-// var hours = $(target).parent('.time-block').attr('id');
-//     console.log(hours);
-//         localStorage.setItem(hours, trimmedInput);
-    
-
+// reads through localstorage to pull the keys/values out and display them
+    $('#row9 .user-text').val(localStorage.getItem ('hour9'));
+    $('#row10 .user-text').val(localStorage.getItem ('hour10'));
+    $('#row11 .user-text').val(localStorage.getItem ('hour11'));
+    $('#row12 .user-text').val(localStorage.getItem ('hour12'));
+    $('#row13 .user-text').val(localStorage.getItem ('hour13'));
+    $('#row14 .user-text').val(localStorage.getItem ('hour14'));
+    $('#row15 .user-text').val(localStorage.getItem ('hour15'));
+    $('#row16 .user-text').val(localStorage.getItem ('hour16'));
+    $('#row17 .user-text').val(localStorage.getItem ('hour17'));
 
 timeclock()
 setInterval(timeclock, 1000)
 checkTime(timeArray, 150000)
+
 
 $('.saveBtn').on('click', storeText);
